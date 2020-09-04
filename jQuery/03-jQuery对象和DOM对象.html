@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // DOM 对象
+        var myDiv = document.querySelector('div');
+        console.dir(myDiv);
+
+        // jQuery 对象
+        $('div');
+        console.dir($('div'));
+
+        // jQuery 对象只能使用 jQuery 方法. DOM对象侧使用原生的 JavaScript 属性和方法
+        //myDiv.style.display = 'none';
+        //$('div').hide();
+    </script>
+</body>
+
+</html>
