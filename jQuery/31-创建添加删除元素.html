@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>原先的li</li>
+    </ul>
+    <div class="test">我是原先的div</div>
+    <script>
+        $(function() {
+            // 创建元素
+            var li = $("<li>123</li>");
+
+            // 添加元素
+            // 内部添加(放到最后面)
+            $("ul").append(li);
+            // (放到最前面)
+            $("ul").prepend(li);
+
+            // 外部添加
+            var div = $("<div>321</div>");
+            $(".test").after(div);
+            $(".test").before(div);
+
+            // 删除元素
+            $("ul").remove(); // 删除匹配的元素
+            $("ul").empty(); // 删除匹配元素的子节点
+            $("ul").html("");
+        })
+    </script>
+</body>
+
+</html>

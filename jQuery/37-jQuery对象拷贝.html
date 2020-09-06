@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function() {
+            // var targetObj = {};
+            // var obj = {
+            //     id: 1,
+            //     name: "andy"
+            // }
+
+            // // $.extend(target, obj);
+            // $.extend(targetObj, obj);
+            // console.log(targetObj);
+
+            // var targetObj = {
+            //     id: 0
+            // };
+            // var obj = {
+            //     id: 1,
+            //     name: "andy"
+            // }
+
+            // // $.extend(target, obj);
+            // $.extend(targetObj, obj); // 覆盖以前的数据
+            // console.log(targetObj);
+            var targetObj = {
+                id: 0,
+                msg: {
+                    age: 20
+                }
+            };
+            var obj = {
+                id: 1,
+                name: "andy",
+                msg: {
+                    age: 18
+                }
+            }
+
+            // 浅拷贝
+            // $.extend(target, obj);
+            // $.extend(targetObj, obj); // 覆盖以前的数据
+            // console.log(targetObj);
+
+            // targetObj.msg.age = 20;
+            // console.log(targetObj);
+            // console.log(obj);
+
+            // $.extend(target, obj);
+
+            // 深拷贝
+            $.extend(targetObj, obj); // 覆盖以前的数据
+            console.log(targetObj);
+
+            targetObj.msg.age = 20;
+            console.log(targetObj);
+            console.log(obj);
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
