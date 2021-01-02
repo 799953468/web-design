@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            id: 1,
+            pname: '小米',
+            price: 19990,
+            num: 2000
+        }
+        // obj.num = 1000;
+        // obj.price = 99;
+        // console.log(obj);
+
+        Object.defineProperty(obj, 'num', {
+            value: 1000
+        });
+        Object.defineProperty(obj, 'price', {
+            value: 99
+        })
+        Object.defineProperty(obj, 'id', {
+            writable: false // 不允许修改
+        })
+        console.log(obj);
+    </script>
+</body>
+
+</html>
