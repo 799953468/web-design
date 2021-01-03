@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button></button>
+    <script>
+        // 普通函数的this指向window
+        function fn() {
+            console.log(this);
+        }
+        // fn();
+        // fn.call();
+
+        // 对象的方法 this指向的是对象
+        var o = {
+            sayHi: function () {
+                console.log(this);
+            }
+        }
+        o.sayHi();
+
+        // 构造函数 this指向 ldh 这个实例 原型对象里面的this 指向的也是 ldh这个实例对象
+        function Star() { };
+        new Star();
+        Star.prototype.sing = function () {
+            console.log(this);
+        }
+        var ldh = new Star();
+
+        // 绑定事件函数 指向btn对象
+        var btn = document.querySelector('button')
+        btn.onclick = function () {
+            console.log(this);
+        }; //点击按钮就可以调用
+
+        // 定时器函数 this指向window
+        setInterval(function () {
+            console.log(this);
+        }, 1000);
+
+        // 立即执行函数(自动调用) this 指向window
+        (function () {
+            console.log(this);
+        })();
+    </script>
+</body>
+
+</html>
