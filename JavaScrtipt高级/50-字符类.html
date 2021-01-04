@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 字符类：[]表示有一系列字符串可供选择，只要匹配就行
+        var rg = /[abc]/; //只要包含有a或b或c
+        console.log(rg.test('andy'));
+        console.log(rg.test('baby'));
+        console.log(rg.test('color'));
+        console.log(rg.test('red'));
+
+        var rg1 = /^[abc]$/; // 三选一 只有是a或是b或是c
+        console.log(rg1.test('aa'));
+        console.log(rg1.test('a'));
+        console.log(rg1.test('b'));
+        console.log(rg1.test('c'));
+
+        var reg = /^[a-z]$/; // 26个英文字母任何一个
+        console.log(reg.test('a'));
+        console.log(reg.test('b'));
+        console.log(reg.test('c'));
+        console.log(reg.test(1));
+        console.log(reg.test('A'));
+
+        // 字符组合
+        var reg1 = /^[a-zA-Z0-9]$/; // 26个英文字母任何一个大写或小写或数字
+        console.log(reg1.test('a'));
+        console.log(reg1.test('B'));
+        console.log(reg1.test(1));
+
+        var reg2 = /^[^a-zA-Z0-9]$/; //中括号里有 ^ 表示取反
+        console.log(reg2.test('a'));
+        console.log(reg2.test('B'));
+        console.log(reg2.test(1));
+    </script>
+</body>
+
+</html>
