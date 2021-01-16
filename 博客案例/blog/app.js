@@ -6,6 +6,10 @@ const path = require('path');
 const bodyPaser = require('body-parser');
 // 引入express-session模块
 const session = require('express-session');
+// 导入template
+const template = require('art-template');
+// 引入dateFormate
+const dateFormat = require('dateformat');
 // 创建网站服务器
 const app = express();
 // 数据库连接
@@ -20,7 +24,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'art');
 // 当渲染后缀为art的模板是所使用的模板引擎是什么
 app.engine('art', require('express-art-template'));
-
+// 向模板导入dateFormat
+template.defaults.imports.dateFormat = dateFormat
 // 开放静态资源文件
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -33,6 +38,17 @@ app.use('/admin', require('./middleware/loginGuard'));
 // 为路由匹配请求路径
 app.use('/home', home);
 app.use('/admin', admin);
+
+app.use((err, req, res, next) => {
+    const result = JSON.parse(err);
+    let params = [];
+    for (let attr in result) {
+        if (attr != 'path') {
+            params.push(attr + '=' + result[attr]);
+        }
+    }
+    res.redirect(`${result.path}?${params.join('&')}`);
+})
 
 app.listen(80);
 console.log('网站服务器启动成功');
