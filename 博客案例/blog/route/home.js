@@ -2,8 +2,10 @@ const express = require('express');
 
 const home = express.Router();
 
-home.get('/', (req, res) => {
-    res.send('欢迎来到博客首页');
-});
+home.get('/',require('./home/index'))
 
-module.exports = home
+// 博客前台文章详情展示页面
+home.get('/article',require('./home/article'))
+// 创建评论路由
+home.post('/comment',require('./home/comment'))
+module.exports = home;

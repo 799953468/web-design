@@ -10,6 +10,10 @@ const session = require('express-session');
 const template = require('art-template');
 // 引入dateFormate
 const dateFormat = require('dateformat');
+// 引入morgan
+const morgan = require('morgan');
+// 导入config
+const config = require('config');
 // 创建网站服务器
 const app = express();
 // 数据库连接
@@ -26,8 +30,20 @@ app.set('view engine', 'art');
 app.engine('art', require('express-art-template'));
 // 向模板导入dateFormat
 template.defaults.imports.dateFormat = dateFormat
+
+console.log(config.get('title'))
 // 开放静态资源文件
 app.use(express.static(path.join(__dirname, 'public')));
+// 获取系统环境变量
+if (process.env.NODE_ENV == 'development') {
+    // 当前是开发环境
+    console.log('当前是开发环境');
+    // 在开发环境中将客户端发送到服务端的请求信息打印到控制台中
+    app.use(morgan('dev'));
+} else {
+    // 当前是生产环境
+    console.log('当前是生产环境');
+}
 
 // 引入路由模块
 const home = require('./route/home');
