@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<p>
+		<input type="text" id="username">
+	</p>
+	<p>
+		<input type="text" id="age">
+	</p>
+	<p>
+		<input type="button" value="提交" id="btn">
+	</p>
+	<script type="text/javascript">
+		// 获取按钮
+		var btn = document.getElementById('btn');
+		// 获取文本框
+		var username = document.getElementById('username');
+		var age = document.getElementById('age');
+		// 添加点击事件
+		btn.onclick = function () {
+			// 创建ajax对象
+			var xhr = new XMLHttpRequest();
+			var nameValue = username.value;
+			var ageValue = age.value;
+			// 拼接请求参数
+			var params = 'username=' + nameValue + '&age=' + ageValue
+			// 配置ajax对象
+			xhr.open('get', 'http://localhost:3000/get?' + params);
+			// 发送请求
+			xhr.send();
+			// 获取服务器端相应的数据
+			xhr.onload = function () {
+				console.log(xhr.responseText);
+			}
+		}
+	</script>
+</body>
+
+</html>
