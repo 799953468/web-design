@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
+
 <body>
 	<script type="text/javascript">
 		// 1.创建ajax对象
@@ -14,15 +16,15 @@
 		// 3.发送请求
 		xhr.send();
 		// 4.获取服务器端响应到客户端的数据
-		xhr.onreadystatechange = function (){
+		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4) {
 				console.log('2')
 				console.log(xhr.responseText)
 			}
-			
-		}
 
+		}
 		console.log('1');
 	</script>
 </body>
+
 </html>
