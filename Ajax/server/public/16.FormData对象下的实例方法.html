@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- 创建普通的html表单 -->
+	<form id="form">
+		<input type="text" name="username">
+		<input type="password" name="password">
+		<input type="button" id="btn" value="提交">
+	</form>
+	<script type="text/javascript">
+		// 获取按钮
+		var btn = document.getElementById('btn');
+		// 获取表单
+		var form = document.getElementById('form');
+		// 为按钮添加点击事件
+		btn.onclick = function () {
+			// 将普通html表单转换为表单对象
+			var formData = new FormData(form);
+			console.log(formData.get('username'));
+			// 如果设置的表单属性存在，将会将会覆盖原有属性
+			formData.set('username', '123');
+			formData.append('username', '321');
+			// 如果设置的表单属性不存在，将会创建
+			formData.set('age', 20);
+			// 删除用户输入的密码
+			formData.delete('password');
+			// 创建ajax
+			var xhr = new XMLHttpRequest();
+			// 配置ajax
+			xhr.open('post', 'http://localhost:3000/formData');
+			// 发送ajax请求
+			xhr.send(formData);
+			// 监听xhr对象下面的onload事件
+			xhr.onload = function () {
+				// 对象http状态码进行判断
+				if (xhr.status == 200) {
+					console.log(xhr.responseText);
+				}
+			}
+			// 创建空的表单对象
+			var f = new FormData();
+			// 如果属性存在，会保留两个属性和值
+			f.append('sex', '男');
+			console.log(f.get('sex'));
+		}
+	</script>
+</body>
+
+</html>

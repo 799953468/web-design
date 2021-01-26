@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const bodyparser = require('body-parser');
+const formidable = require('formidable');
 const app = express();
 
 app.use(bodyparser.json());
@@ -33,6 +33,28 @@ app.get('/cache', (req, res) => {
 });
 app.get('/first', (req, res) => {
     res.send('4');
+});
+app.post('/formData', (req, res) => {
+    // 创建formidable表单解析对象
+    const form = new formidable.IncomingForm();
+    // 解析客户端传递过来的FormData对象
+    form.parse(req, (err, fields, files) => {
+        res.send(fields);
+    });
+});
+app.post('/upload', (req, res) => {
+    // 创建formidable表单解析对象
+    const form = new formidable.IncomingForm();
+    // 设置客户端上传文件的存储路径
+    form.uploadDir = path.join(__dirname, 'public', 'uploads');
+    // 保留上传文件的后缀
+    form.keepExtensions = true;
+    // 解析客户端传递过来的FormData对象
+    form.parse(req, (err, fields, files) => {
+        res.send({
+            path: files.attrName.path.split('public')[1]
+        });
+    });
 });
 app.listen(3000);
 console.log('服务器启动成功');
