@@ -11,11 +11,11 @@ const app = express();
 // 静态资源访问服务功能
 app.use(express.static(path.join(__dirname, 'public')));
 // 处理post请求参数
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
 
 // 数据库连接
-mongoose.connect('mongodb://itcast:itcast@localhost:27017/todo', {useNewUrlParser: true })
+mongoose.connect('mongodb://admin:admin@localhost:27017/todo', { useNewUrlParser: true })
 
 app.get('/base', (req, res) => {
 	res.send({
@@ -41,7 +41,7 @@ app.post('/user', (req, res) => {
 
 app.get('/jsonp', (req, res) => {
 	const cb = req.query.cb
-	const data = cb+"({name: 'zhaoliu'})"
+	const data = cb + "({name: 'zhaoliu'})"
 	res.send(data);
 	// res.jsonp({
 	// 	name: 'lisi',
