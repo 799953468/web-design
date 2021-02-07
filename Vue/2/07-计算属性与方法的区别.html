@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{reverseString}}</div>
+        <div>{{reverseString}}</div>
+        <div>{{reverseMessage()}}</div>
+        <div>{{reverseMessage()}}</div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Nihao',
+                num: 100
+            },
+            methods: {
+                reverseMessage: function () {
+                    console.log('methods');
+                    return this.msg.split('').reverse().join('');
+                }
+            },
+            computed: {
+                reverseString: function () {
+                    console.log('computed');
+                    //return this.msg.split('').reverse().join('');
+                    var total = 0;
+                    for (var i = 0; i <= this.num; i++) {
+                        total += i;
+                    }
+                    return total;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
